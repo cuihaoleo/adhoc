@@ -6,7 +6,7 @@ KEY=$2
 IPV4=$(ip route get 1 | grep -Po '(?<=src )[^ ]+')
 IPV6=$(ip route get 2001:: | grep -Po '(?<=src )[^ ]+')
 
-if [[ -n $IPv4 ]]; then 
+if [[ -n $IPV4 ]]; then 
     echo "Update IPv4: $IPV4"
     curl -q "https://dyn.dns.he.net/nic/update" \
         -d "hostname=$DOMAIN" \
@@ -16,7 +16,7 @@ if [[ -n $IPv4 ]]; then
     echo
 fi
 
-if [[ -n $IPv6 ]]; then 
+if [[ -n $IPV6 ]]; then 
     echo "Update IPv6: $IPV6"
     curl -q "https://dyn.dns.he.net/nic/update" \
         -d "hostname=$DOMAIN" \
