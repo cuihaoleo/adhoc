@@ -1,0 +1,14 @@
+[Unit]
+Description=IPv4 First Resolver
+
+[Service]
+User=adguard
+Group=adguard
+Environment="LOCAL_PORT=15353" "LOCAL_ADDRESS=127.0.0.1"
+EnvironmentFile=/srv/ipv4_first_resolver/%I.conf
+ExecStart=/usr/bin/python3 /srv/ipv4_first_resolver/resolver.py -p ${LOCAL_PORT} -a ${LOCAL_ADDRESS} -u ${UPSTREAM}
+RuntimeMaxSec=21600
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
