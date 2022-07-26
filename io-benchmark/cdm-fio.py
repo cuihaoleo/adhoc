@@ -44,7 +44,6 @@ for test_type, iodepth, numjobs in all_tests:
                 "--iodepth=%d" % iodepth,
                 "--numjobs=%d" % numjobs,
                 "--rw=%s" % (prefix + rw)]
-            print(newcmd)
             output = subprocess.check_output(newcmd)
         result = json.loads(output.decode())
         perf = result["jobs"][0][rw]
