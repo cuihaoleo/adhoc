@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""IPv4 first DNS server.
+
+Based on: https://github.com/paulc/dnslib/blob/0b2855f5e0fe0010e9d0c8393f1eb3091e86941d/dnslib/intercept.py
+"""
 
 import argparse
 import socket
@@ -52,9 +56,6 @@ if __name__ == '__main__':
     p.add_argument("--timeout", "-o", type=float, default=5,
                    metavar="<timeout>",
                    help="Upstream timeout (default: 5s)")
-    p.add_argument("--intercept", "-i", action="append",
-                   metavar="<zone record>",
-                   help="Intercept requests matching zone record (glob) ('-' for stdin)")
     p.add_argument("--log", default="request,reply,truncated,error",
                    help="Log hooks to enable (default: +request,+reply,+truncated,+error,-recv,-send,-data)")
     p.add_argument("--log-prefix", action='store_true', default=False,
